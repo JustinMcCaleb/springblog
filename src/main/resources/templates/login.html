@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:replace="partials :: head (pageTitle ='Login')"></head>
+<body>
+<nav th:replace="partials :: navbar"></nav>
+<header th:fragment="header">Header</header>
+
+    <h3>Login</h3>
+
+    <form action="/profile" method="post">
+        <label for="user">Username</label>
+        <input type="text" name="user" id="user">
+        <!-- Just for demo -->
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <button>Submit</button>
+    </form>
+<footer th:replace="partials :: footer"></footer>
+
+</body>
+</html>
