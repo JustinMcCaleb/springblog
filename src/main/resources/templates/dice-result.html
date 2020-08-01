@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-</head>
+<head th:replace="partials :: head (pageTitle ='Roll Result')"></head>
 <body>
+<nav th:replace="partials :: navbar"></nav>
+<header th:fragment="header">Header</header>
+
 <h2>Dice Roll: <span th:text="${diceRoll}"></span></h2>
 <h2>Your Guess: <span th:text="${userGuess}"></span></h2>
 
@@ -14,5 +14,6 @@
 
 
 <a href="/roll-dice">Play Again!</a>
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>
