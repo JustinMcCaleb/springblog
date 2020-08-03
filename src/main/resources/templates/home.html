@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head (pageTitle ='Home')"></head>
 <body>
-    <nav th:replace="partials :: navbar"></nav>
-    <header th:fragment="header">Header</header>
+<header th:replace="partials :: header"></header>
 
     <h1>Home Page.</h1>
     <h4>Welcome <span th:text="${cohort}"></span></h4>

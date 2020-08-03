@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head (pageTitle ='Roll Result')"></head>
 <body>
-<nav th:replace="partials :: navbar"></nav>
-<header th:fragment="header">Header</header>
+<header th:replace="partials :: header"></header>
 
 <h2>Dice Roll: <span th:text="${diceRoll}"></span></h2>
 <h2>Your Guess: <span th:text="${userGuess}"></span></h2>
