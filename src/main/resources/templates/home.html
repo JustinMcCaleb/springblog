@@ -3,14 +3,16 @@
 <head th:replace="partials :: head (pageTitle ='Home')"></head>
 <body>
 <header th:replace="partials :: header"></header>
-
-    <h1>Home Page.</h1>
-    <h4>Welcome <span th:text="${cohort}"></span></h4>
-    <h4>What Cohort are you in?</h4>
-    <form action="/" method="post">
-        <input type="text" name="cohort" id="cohort">
-        <button>Submit</button>
-    </form>
-    <footer th:replace="partials :: footer"></footer>
+<div class="jumbotron">
+    <img src="../../../../img/forest.jpg" alt="">
+</div>
+<!--    <h1>Home Page.</h1>-->
+<!--    <h4>Welcome <span th:text="${cohort}"></span></h4>-->
+<!--    <h4>What Cohort are you in?</h4>-->
+<!--    <form action="/" method="post">-->
+<!--        <input type="text" name="cohort" id="cohort">-->
+<!--        <button>Submit</button>-->
+<!--    </form>-->
+<!--    <footer th:replace="partials :: footer"></footer>-->
 </body>
 </html>
