@@ -1,33 +1,55 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
 @Controller
 public class PostController {
 
+    //dependency injection
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
+
+
     @GetMapping("/posts")
     public String posts(Model model){
-        ArrayList<Post> allPosts = new ArrayList<>();
-        Post ufo = new Post("UFO","It abducted my lizard!");
-        Post ghost = new Post("Ghost", "It walked through walls man.");
-        allPosts.add(ufo);
-        allPosts.add(ghost);
-        model.addAttribute("posts", allPosts);
+        model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
-    @GetMapping("/posts/{id}")
-    public String individualPost(@PathVariable int id, Model model){
-        Post vampire = new Post("Vampire", "Tbh, this dude sucked");
-        model.addAttribute("post", vampire);
+    @GetMapping("/posts/{postId}")
+    public String individualPost(@PathVariable long postId, Model model){
+        model.addAttribute("singlePost", postDao.getOne(postId));
         return "posts/show";
+    }
+
+    @GetMapping("/posts/edit/{id}")
+    public String showPostToEdit(@PathVariable long id, Model model){
+        model.addAttribute("singlePost", postDao.getOne(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        postDao.save(new Post(id, title, body));
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
