@@ -10,6 +10,15 @@ VALUES
 # VALUES
 #         ('')
 
+INSERT INTO comments (body, post_id)
+VALUES
+        ('Comment1', 1),
+        ('Comment2',1),
+        ('Comment3',2),
+       ('Comment4', 3),
+       ('Comment5', 5);
+
+
 
 INSERT INTO posts (title, body, user_id)
 VALUES ('UFO', 'It abducted my lizard. Poor Clementine.', 1),

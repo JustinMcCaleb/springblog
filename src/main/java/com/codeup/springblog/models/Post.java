@@ -24,15 +24,27 @@ public class Post {
 //    @JoinColumn (name = "cat_id")
 //    private Category category;
 
+    //realtion to user
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
+
+    //relation to comment
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
     public Post(){}
 
     public Post(String title, String body){
         this.title = title;
         this.body = body;
+    }
+
+    public Post(String title, String body, User user, List<Comment> comments) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.comments = comments;
     }
 
     public Post(long id, String title, String body) {
@@ -46,6 +58,14 @@ public class Post {
         this.title = title;
         this.body = body;
         this.user = user;
+    }
+
+    public Post(long id, String title, String body, User user, List<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.comments = comments;
     }
 
     public void setTitle(String title){
@@ -75,5 +95,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
