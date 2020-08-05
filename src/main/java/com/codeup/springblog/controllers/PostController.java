@@ -18,6 +18,7 @@ public class PostController {
     //dependency injection
     private final PostRepository postDao;
     private final UserRepository userDao;
+//    private final CategoryRepository categoryDao;
 
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
