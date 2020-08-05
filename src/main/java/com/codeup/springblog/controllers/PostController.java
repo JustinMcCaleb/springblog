@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.repositories.CommentRepository;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,14 @@ public class PostController {
     //dependency injection
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final CommentRepository commentDao;
+//    private final CategoryRepository categoryDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.commentDao = commentDao;
     }
-
 
     @GetMapping("/posts")
     public String posts(Model model){

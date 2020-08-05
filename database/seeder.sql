@@ -1,5 +1,25 @@
 use blog_db;
 
+INSERT INTO users (email, password, username)
+VALUES
+        ('user@email.com', 'pizza', 'user'),
+        ('testUser@email.com', 'pizza', 'testUser'),
+        ('ghostBuster@email.com', 'pizza', 'ghostBuster');
+
+# INSERT INTO categories (name, post_id)
+# VALUES
+#         ('')
+
+INSERT INTO comments (body, post_id)
+VALUES
+        ('Comment1', 1),
+        ('Comment2',1),
+        ('Comment3',2),
+       ('Comment4', 3),
+       ('Comment5', 5);
+
+
+
 INSERT INTO posts (title, body, user_id)
 VALUES ('UFO', 'It abducted my lizard. Poor Clementine.', 1),
        ('Ghost','It walked through walls man.', 3),
@@ -12,8 +32,4 @@ VALUES ('UFO', 'It abducted my lizard. Poor Clementine.', 1),
        ('Title4','Body4', 2),
        ('Title5','Body5', 2);
 
-INSERT INTO users (email, password, username)
-VALUES
-        ('user@email.com', 'pizza', 'user'),
-        ('testUser@email.com', 'pizza', 'testUser'),
-        ('ghostBuster@email.com', 'pizza', 'ghostBuster');
+

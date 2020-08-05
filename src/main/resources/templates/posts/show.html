@@ -3,8 +3,8 @@
 <head th:replace="partials :: head (pageTitle ='Post')"></head>
 <body>
 <header th:replace="partials :: header"></header>
-    <div class="w-100 d-flex justify-content-center">
-        <div class="card w-75 my-3" style="width: 18rem;">
+    <div class="w-100 d-flex align-items-center flex-column">
+        <div class="card w-75 my-3">
             <div class="card-header text-center font-weight-bold" th:text="${singlePost.title}"></div>
             <div class="card-body">
                 <p class="card-text" th:text="${singlePost.body}"></p>
@@ -13,6 +13,14 @@
                 <p>Created by: <span th:text="${singlePost.getUser().getEmail()}"></span></p>
                 <a th:href="@{/posts/edit/{id}(id=${singlePost.id})}" class="btn btn-outline-danger align-self-end">Edit Post</a>
             </div>
+        </div>
+        <div class="card w-75">
+            <div class="card-header">
+                Comments
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:each="comment : ${singlePost.getComments()}" th:text="${comment.body}"></li>
+            </ul>
         </div>
     </div>
 <footer th:replace="partials :: footer"></footer>
