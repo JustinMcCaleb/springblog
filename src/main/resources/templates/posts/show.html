@@ -6,8 +6,11 @@
     <div class="w-100 d-flex justify-content-center">
         <div class="card w-75 my-3" style="width: 18rem;">
             <div class="card-header text-center font-weight-bold" th:text="${singlePost.title}"></div>
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <p class="card-text" th:text="${singlePost.body}"></p>
+            </div>
+            <div class="card-body d-flex justify-content-between">
+                <p>Created by: <span th:text="${singlePost.getUser().getEmail()}"></span></p>
                 <a th:href="@{/posts/edit/{id}(id=${singlePost.id})}" class="btn btn-outline-danger align-self-end">Edit Post</a>
             </div>
         </div>
