@@ -10,6 +10,9 @@
         <div class="card-body d-flex flex-column">
             <p class="card-text" th:text="${singlePost.body}"></p>
         </div>
+        <div class="card-body">
+            <p>Created by: <span th:text="${singlePost.getUser().getEmail()}"></span></p>
+        </div>
     </div>
     <div class="w-100 d-flex justify-content-center align-items-center flex-column mt-5">
         <h5>Update your Post info below</h5>
