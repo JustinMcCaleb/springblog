@@ -1,5 +1,6 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Category;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.CategoryRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -63,20 +65,29 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String viewCreateForm(){
-        User user = userDao.getOne(3L);
-        Post post = new Post();
-        post.setTitle("Hard Coded Post");
-        post.setBody(("Hard Coded Body"));
-        post.setUser(user);
-
-        postDao.save(post);
-
-        return "redirect:/posts";
+    public String viewCreateForm(Model model){
+        model.addAttribute("categories", categoryDao.findAll());
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(){
-        return "create a new post";
+    public String createPost(
+            @RequestParam(name="title")String title,
+            @RequestParam(name="body")String body,
+            @RequestParam(name="cat")List<Long> categories)
+    {
+        List<Category> listCat = new ArrayList<>();
+
+        for(int i = 0; i < categories.size(); i++){
+            listCat.add(categoryDao.getOne(categories.get(i)));
+        }
+        Post newPost = new Post();
+        newPost.setTitle(title);
+        newPost.setBody(body);
+        newPost.setCategories(listCat);
+        User user = userDao.getOne(3L);
+        newPost.setUser(user);
+        postDao.save(newPost);
+        return "redirect:/posts";
     }
 }
