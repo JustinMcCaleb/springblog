@@ -11,7 +11,7 @@
             <p class="card-text" th:text="${singlePost.body}"></p>
         </div>
         <div class="card-body">
-            <p>Created by: <span th:text="${singlePost.getUser().getEmail()}"></span></p>
+            <p>Created by: <span th:text="${singlePost.user.email}"></span></p>
         </div>
     </div>
     <div class="w-100 d-flex justify-content-center align-items-center flex-column mt-5">
