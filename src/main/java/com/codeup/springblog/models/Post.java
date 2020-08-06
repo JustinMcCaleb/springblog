@@ -17,22 +17,25 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
-//    @OneToMany (mappedBy = "post")
-//    private List<Category> categories;
-
-//    @ManyToOne
-//    @JoinColumn (name = "cat_id")
-//    private Category category;
-
-    //realtion to user
+    //one-to-many relation to User
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
 
-    //relation to comment
+    //one-to-many relation to Comment
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
+    //many-to-many relationship to Category
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "posts_categories",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
+
+    //Constructors ==========================================================
     public Post(){}
 
     public Post(String title, String body){
@@ -68,6 +71,16 @@ public class Post {
         this.comments = comments;
     }
 
+    public Post(long id, String title, String body, User user, List<Comment> comments, List<Category> categories) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.comments = comments;
+        this.categories = categories;
+    }
+
+    //Getters and Setters ==========================================================
     public void setTitle(String title){
         this.title = title;
     }
@@ -103,5 +116,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

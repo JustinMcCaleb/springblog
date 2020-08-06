@@ -1,6 +1,8 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.CategoryRepository;
 import com.codeup.springblog.repositories.CommentRepository;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
@@ -20,12 +22,14 @@ public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
     private final CommentRepository commentDao;
-//    private final CategoryRepository categoryDao;
+    private final CategoryRepository categoryDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao) {
+
+    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao, CategoryRepository categoryDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.commentDao = commentDao;
+        this.categoryDao = categoryDao;
     }
 
     @GetMapping("/posts")
@@ -60,7 +64,15 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String viewCreateForm(){
-        return "view the form for creating a post";
+        User user = userDao.getOne(3L);
+        Post post = new Post();
+        post.setTitle("Hard Coded Post");
+        post.setBody(("Hard Coded Body"));
+        post.setUser(user);
+
+        postDao.save(post);
+
+        return "redirect:/posts";
     }
 
     @PostMapping("/posts/create")
