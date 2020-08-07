@@ -29,7 +29,7 @@ public class Post {
     //many-to-many relationship to Category
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "posts_categories",
+            name = "post_category",
             joinColumns = {@JoinColumn(name = "post_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )

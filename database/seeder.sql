@@ -46,7 +46,7 @@ VALUES
         ('Comment4', 3),
         ('Comment5', 5);
 
-INSERT INTO posts_categories (post_id, category_id)
+INSERT INTO post_category (post_id, category_id)
 VALUES
         (1,1),
         (1,2),
