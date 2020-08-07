@@ -46,7 +46,6 @@ public class PostController {
     @GetMapping("/posts/{id}/edit")
     public String showPostToEdit(@PathVariable long id, Model model){
         model.addAttribute("singlePost", postDao.getOne(id));
-        model.addAttribute("post", new Post());
         model.addAttribute("categories", categoryDao.findAll());
         return "posts/edit";
     }
@@ -54,7 +53,7 @@ public class PostController {
     @PostMapping("/posts/{id}/edit")
     public String editPost(
             @PathVariable long id,
-            @ModelAttribute Post post,
+            @ModelAttribute Post singlePost,
             @RequestParam(name="cat")List<Long> categories){
 
         List<Category> listCat = new ArrayList<>();
@@ -64,10 +63,9 @@ public class PostController {
         }
 
         User user = userDao.getOne(3L);
-        post.setId(id);
-        post.setUser(user);
-        post.setCategories(listCat);
-        postDao.save(post);
+        singlePost.setUser(user);
+        singlePost.setCategories(listCat);
+        postDao.save(singlePost);
         return "redirect:/posts";
     }
 
