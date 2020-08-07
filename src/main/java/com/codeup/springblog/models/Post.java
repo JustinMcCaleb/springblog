@@ -27,7 +27,7 @@ public class Post {
     private List<Comment> comments;
 
     //many-to-many relationship to Category
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "post_category",
             joinColumns = {@JoinColumn(name = "post_id")},
@@ -63,12 +63,12 @@ public class Post {
         this.user = user;
     }
 
-    public Post(long id, String title, String body, User user, List<Comment> comments) {
+    public Post(long id, String title, String body, User user, List<Category> categories) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
-        this.comments = comments;
+        this.categories = categories;
     }
 
     public Post(long id, String title, String body, User user, List<Comment> comments, List<Category> categories) {
