@@ -9,10 +9,7 @@ import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,15 +43,31 @@ public class PostController {
         return "posts/show";
     }
 
-    @GetMapping("/posts/edit/{id}")
+    @GetMapping("/posts/{id}/edit")
     public String showPostToEdit(@PathVariable long id, Model model){
         model.addAttribute("singlePost", postDao.getOne(id));
+        model.addAttribute("post", new Post());
+        model.addAttribute("categories", categoryDao.findAll());
         return "posts/edit";
     }
 
-    @PostMapping("/posts/edit/{id}")
-    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        postDao.save(new Post(id, title, body));
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(
+            @PathVariable long id,
+            @ModelAttribute Post post,
+            @RequestParam(name="cat")List<Long> categories){
+
+        List<Category> listCat = new ArrayList<>();
+
+        for(int i = 0; i < categories.size(); i++){
+            listCat.add(categoryDao.getOne(categories.get(i)));
+        }
+
+        User user = userDao.getOne(3L);
+        post.setId(id);
+        post.setUser(user);
+        post.setCategories(listCat);
+        postDao.save(post);
         return "redirect:/posts";
     }
 
@@ -66,14 +79,14 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String viewCreateForm(Model model){
+        model.addAttribute("post", new Post());
         model.addAttribute("categories", categoryDao.findAll());
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
     public String createPost(
-            @RequestParam(name="title")String title,
-            @RequestParam(name="body")String body,
+            @ModelAttribute Post post,
             @RequestParam(name="cat")List<Long> categories)
     {
         List<Category> listCat = new ArrayList<>();
@@ -81,13 +94,10 @@ public class PostController {
         for(int i = 0; i < categories.size(); i++){
             listCat.add(categoryDao.getOne(categories.get(i)));
         }
-        Post newPost = new Post();
-        newPost.setTitle(title);
-        newPost.setBody(body);
-        newPost.setCategories(listCat);
+        post.setCategories(listCat);
         User user = userDao.getOne(3L);
-        newPost.setUser(user);
-        postDao.save(newPost);
+        post.setUser(user);
+        postDao.save(post);
         return "redirect:/posts";
     }
 }
