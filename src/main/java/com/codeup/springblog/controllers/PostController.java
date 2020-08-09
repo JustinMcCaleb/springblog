@@ -7,6 +7,7 @@ import com.codeup.springblog.repositories.CategoryRepository;
 import com.codeup.springblog.repositories.CommentRepository;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,15 @@ public class PostController {
     private final UserRepository userDao;
     private final CommentRepository commentDao;
     private final CategoryRepository categoryDao;
+    private final EmailService emailService;
 
 
-    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao, CategoryRepository categoryDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao, CategoryRepository categoryDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.commentDao = commentDao;
         this.categoryDao = categoryDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -96,6 +99,7 @@ public class PostController {
         User user = userDao.getOne(3L);
         post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSend(post,"Confirmation",user.getUsername() + ", your post has been successfully created!");
         return "redirect:/posts";
     }
 }
