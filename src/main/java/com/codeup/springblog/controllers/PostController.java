@@ -82,7 +82,7 @@ public class PostController {
     public String viewCreateForm(Model model){
         model.addAttribute("post", new Post());
         model.addAttribute("categories", categoryDao.findAll());
-        return "/posts/create";
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
