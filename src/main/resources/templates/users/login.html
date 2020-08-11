@@ -8,6 +8,14 @@
     <!--Title-->
     <h3 class="my-5">Welcome to Magic Hat Blog</h3>
 
+    <!--Display error or logged out message-->
+    <div th:if="${param.error}">
+        Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
     <!--Login form with bootstrap-->
     <form th:action="@{/login}" method="post" class="w-25 my-3 d-flex flex-column">
         <div class="form-group">
