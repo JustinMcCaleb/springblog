@@ -8,6 +8,7 @@ import com.codeup.springblog.repositories.CommentRepository;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -96,7 +97,7 @@ public class PostController {
             listCat.add(categoryDao.getOne(categories.get(i)));
         }
         post.setCategories(listCat);
-        User user = userDao.getOne(3L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postDao.save(post);
         emailService.prepareAndSend(post,"Confirmation",user.getUsername() + ", your post has been successfully created!");
