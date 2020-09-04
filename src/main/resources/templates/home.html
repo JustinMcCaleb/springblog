@@ -4,13 +4,10 @@
 <body>
 <header th:replace="partials :: header"></header>
 
-    <h1>Home Page.</h1>
-    <h4>Welcome <span th:text="${cohort}"></span></h4>
-<!--    <h4>What Cohort are you in?</h4>-->
-<!--    <form action="/" method="post">-->
-<!--        <input type="text" name="cohort" id="cohort">-->
-<!--        <button>Submit</button>-->
-<!--    </form>-->
+        <div class="background">
+            <img class="center-fit" th:src="@{/img/AfterlightImage.jpeg}" alt="">
+        </div>
+
     <footer th:replace="partials :: footer"></footer>
 </body>
 </html>
