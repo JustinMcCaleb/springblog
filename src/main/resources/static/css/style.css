@@ -1,7 +1,9 @@
 body,html {
-    background-color: #0f3641e0;
+    background-color: rgba(139, 179, 186, 0.88);
     height: 100vh;
     width: 100vw;
+    color: #2f353b;
+    overflow: auto;
 }
 
 * {
