@@ -1,4 +1,8 @@
 body {
     background-color: #03d2e6;
-    /*background-image: url('AfterlightImage.jpeg');*/
+}
+
+.background {
+    background-image: url("../img/AfterlightImage.jpeg");
+    background-size: 100vh 100vw;
 }
