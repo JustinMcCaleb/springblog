@@ -107,8 +107,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/{postId}/add-comment")
-    public String addComment(@PathVariable long postId){
-
+    public String addComment(@PathVariable long postId, @ModelAttribute Comment comment){
+        comment.setPost(postDao.getOne(postId));
         return "";
     }
 }
