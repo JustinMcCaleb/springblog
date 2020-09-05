@@ -31,6 +31,13 @@
 
         </div>
 
+        <form th:action="@{'/posts/' + ${singlePost.id} + '/add-comment'}" th:method="post" class="w-50" th:object="${comment}">
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Comment" th:field="*{body}">
+            </div>
+            <button type="submit" class="btn btn-block btn-info">Create</button>
+        </form>
 
         <div class="card w-50 my-3">
 
@@ -38,6 +45,8 @@
             <div class="card-header">
                 Comments
             </div>
+
+
 
 
             <ul class="list-group list-group-flush">

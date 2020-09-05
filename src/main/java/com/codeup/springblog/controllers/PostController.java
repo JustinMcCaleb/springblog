@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Category;
+import com.codeup.springblog.models.Comment;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.CategoryRepository;
@@ -44,6 +45,7 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public String individualPost(@PathVariable long postId, Model model){
         model.addAttribute("singlePost", postDao.getOne(postId));
+        model.addAttribute("comment", new Comment());
         return "posts/show";
     }
 
@@ -102,5 +104,12 @@ public class PostController {
         postDao.save(post);
         emailService.prepareAndSend(post,"Confirmation",user.getUsername() + ", your post has been successfully created!");
         return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/{postId}/add-comment")
+    public String addComment(@PathVariable long postId, @ModelAttribute Comment comment){
+        comment.setPost(postDao.getOne(postId));
+        commentDao.save(comment);
+        return "redirect:/posts/" + postId;
     }
 }
