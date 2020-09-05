@@ -103,4 +103,9 @@ public class PostController {
         emailService.prepareAndSend(post,"Confirmation",user.getUsername() + ", your post has been successfully created!");
         return "redirect:/posts";
     }
+
+    @PostMapping("/posts/{postId}/add-comment")
+    public String addComment(@PathVariable long postId){
+        return "";
+    }
 }

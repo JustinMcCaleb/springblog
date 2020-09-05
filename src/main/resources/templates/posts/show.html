@@ -31,7 +31,7 @@
 
         </div>
 
-        <form th:action="@{/}" th:method="post" class="w-50">
+        <form th:action="@{'/posts/' + ${singlePost.id} + '/add-comment'}" th:method="post" class="w-50">
 
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Comment">
