@@ -8,7 +8,6 @@ body {
     height: 100%;
     width: 100%;
     color: #2f353b;
-    /*padding-top: 50px;*/
 }
 
 /*STYLING FOR HOMEPAGE IMAGE*/
@@ -31,7 +30,6 @@ body {
 
 /*POST INDEX PAGE DIV*/
 .post-div{
-    /*margin-top: 25px;*/
     height: 100vh;
 }
 
