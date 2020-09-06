@@ -27,3 +27,13 @@ body,html {
 .post-div{
     height: 95vh;
 }
+
+/*CATEGORY SIDE SCROLL ON POST PAGE*/
+div.scroll-menu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scroll-menu span {
+    display: inline-block;
+}
