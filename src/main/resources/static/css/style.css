@@ -1,9 +1,14 @@
-body,html {
-    background-color: rgba(139, 179, 186, 0.88);
+html {
     height: 100vh;
     width: 100vw;
+}
+
+body {
+    background-color: rgba(139, 179, 186, 0.88);
+    height: 100%;
+    width: 100%;
     color: #2f353b;
-    margin-top: 25px;
+    padding-top: 50px;
 }
 
 /*STYLING FOR HOMEPAGE IMAGE*/
