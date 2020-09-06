@@ -3,6 +3,7 @@ body,html {
     height: 100vh;
     width: 100vw;
     color: #2f353b;
+    margin-top: 25px;
 }
 
 /*STYLING FOR HOMEPAGE IMAGE*/
@@ -25,7 +26,8 @@ body,html {
 
 /*POST INDEX PAGE DIV*/
 .post-div{
-    height: 95vh;
+    margin-top: 25px;
+    height: 100vh;
 }
 
 /*CATEGORY SIDE SCROLL ON POST PAGE*/
