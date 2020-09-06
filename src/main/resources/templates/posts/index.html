@@ -18,8 +18,10 @@
 
             <div class="card-footer text-muted d-flex align-items-center">
                 <p class="my-0">Categories:</p>
-                <div class="mx-2" th:each="category : ${singlePost.categories}">
-                    <span class="badge badge-pill badge-secondary" th:text="${category.name}"></span>
+                <div class="scroll-menu d-flex align-items-center">
+                    <div class="mx-2" th:each="category : ${singlePost.categories}">
+                        <span class="badge badge-pill badge-secondary" th:text="${category.name}"></span>
+                    </div>
                 </div>
             </div>
 
