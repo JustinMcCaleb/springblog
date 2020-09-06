@@ -1,7 +1,12 @@
-body,html {
-    background-color: rgba(139, 179, 186, 0.88);
+html {
     height: 100vh;
     width: 100vw;
+}
+
+body {
+    background-color: rgba(139, 179, 186, 0.88);
+    height: 100%;
+    width: 100%;
     color: #2f353b;
 }
 
@@ -25,7 +30,7 @@ body,html {
 
 /*POST INDEX PAGE DIV*/
 .post-div{
-    height: 95vh;
+    height: 100vh;
 }
 
 /*CATEGORY SIDE SCROLL ON POST PAGE*/

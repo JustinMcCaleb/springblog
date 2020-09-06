@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head (pageTitle ='All Posts')"></head>
-<body>
+<body class="">
 <header th:replace="partials :: header"></header>
-<div class="container-fluid d-flex flex-column overflow-auto post-div">
+<div class="container-fluid d-flex flex-column post-div overflow-auto pt-5">
 
     <div th:each="singlePost : ${posts}" class="w-100 d-flex justify-content-center">
         <div class="card w-50 my-3" style="width: 18rem;">
